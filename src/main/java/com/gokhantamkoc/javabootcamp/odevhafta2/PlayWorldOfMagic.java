@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class PlayWorldOfMagic implements CommandLineRunner {
 	public static void main(String[] args) {
@@ -18,6 +19,7 @@ public class PlayWorldOfMagic implements CommandLineRunner {
 		float[] spellDamageInfo = createSpellDamageRepository();
 		String[] bossNames = createBossNameRepository();
 		float[] bossHps = createBossHPRepository();
+
 		
 		int minNumberSpellsUsed = resolveBattle(
 				magicianSpells, 
@@ -48,16 +50,27 @@ public class PlayWorldOfMagic implements CommandLineRunner {
 		/* NOT: ______ BASLANGIC _______ ve ______ SON _______ 
 		 * arasina istediginiz kadar sayida satir ekleyebilirsiniz.
 		 */
+		float max = spellDamageInfo[0];
+
+		for (int i = 1; i < spellDamageInfo.length; i++)
+			if (spellDamageInfo[i] > max)
+				max = spellDamageInfo[i];
+				spellsUsed+=1;
+		for (int i = 1; i < bossHPs.length; i++)
+			if (spellDamageInfo[i] > max)
+				max = spellDamageInfo[i];
+				spellsUsed+=1;
+
 		return spellsUsed;
 	}
 	
-	public static String[] createSpellNameRepository() {
+	public static String[] createSpellNameRepository() {//büyü oluşturma
 		return new String[]{"Ice Storm", "Chain Lightning", "Magic Missile"};
 	}
 	
 	public static float[] createSpellDamageRepository() {
 		return new float[]{40.0f, 30.0f, 5.0f};
-	}
+	}//büyü hasarı
 	
 	public static String[] createBossNameRepository() {
 		return new String[]{"Dire Rat", "Skeleton Knight", "Undead King"};
