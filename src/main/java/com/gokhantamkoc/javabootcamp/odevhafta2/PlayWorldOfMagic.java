@@ -44,33 +44,26 @@ public class PlayWorldOfMagic implements CommandLineRunner {
 			) {
 		
 		int spellsUsed = 0;
-		// ______ BASLANGIC _______ Kodunuz buradan baslamali
-		
-		// ______ SON _______ Kodunuz burada bitmeli
-		/* NOT: ______ BASLANGIC _______ ve ______ SON _______ 
-		 * arasina istediginiz kadar sayida satir ekleyebilirsiniz.
-		 */
 		float max = spellDamageInfo[0];
-
-		for (int i = 1; i < spellDamageInfo.length; i++)
+		for (int i = 0; i < spellDamageInfo.length; i++){
 			if (spellDamageInfo[i] > max)
 				max = spellDamageInfo[i];
-				spellsUsed+=1;
-		for (int i = 1; i < bossHPs.length; i++)
-			if (spellDamageInfo[i] > max)
-				max = spellDamageInfo[i];
-				spellsUsed+=1;
-
+		}
+		float totalPower=0;
+		for(int i=0;i<bossHPs.length;i++){
+			totalPower=bossHPs[i];
+			spellsUsed+= (int) Math.ceil((totalPower / max));
+		}
 		return spellsUsed;
 	}
 	
-	public static String[] createSpellNameRepository() {//büyü oluşturma
+	public static String[] createSpellNameRepository() {
 		return new String[]{"Ice Storm", "Chain Lightning", "Magic Missile"};
 	}
 	
 	public static float[] createSpellDamageRepository() {
 		return new float[]{40.0f, 30.0f, 5.0f};
-	}//büyü hasarı
+	}
 	
 	public static String[] createBossNameRepository() {
 		return new String[]{"Dire Rat", "Skeleton Knight", "Undead King"};
